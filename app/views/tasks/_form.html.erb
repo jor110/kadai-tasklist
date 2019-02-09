@@ -1,18 +1,24 @@
-<% if task.errors.any? %>
-  <div id="error_explanation">
-    <ul>
-      <% task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
+<div class="row">
+  <div class="col-sm-offset-2 col-sm-8 col-lg-offset-3 col-lg-6">
+    <% if task.errors.any? %>
+      <div id="error_explanation" class="alert alert-warning">
+        <ul>
+          <% task.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= form_for(task) do |f| %>
+      <div class="form-group">
+        <%= f.label :status,'ステータス' %>
+        <%= f.text_field :status,class:'form-control' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :content,'タスク名' %>
+        <%= f.text_field :content,class:'form-control' %>
+      </div>
+      <%= f.submit '投稿',class:'btn btn-primary' %>
+    <% end %>
   </div>
-  <% end %>
-<%= form_for(task) do |f| %>
-  <%= f.label :status,'ステータス' %>
-  <%= f.text_field :status %>
-  <br>
-  <%= f.label :content,'タスク名' %>
-  <%= f.text_field :content %>
-  <br>
-  <%= f.submit '投稿' %>
-<% end %>
+</div>
